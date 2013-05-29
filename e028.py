@@ -1,6 +1,5 @@
 #!/usr/bin/python
 
-
 nxt = 3
 count = 0
 bloc = 2

@@ -2,8 +2,7 @@
 
 f = open("names.txt").read()
 f = f.replace('"', '')
-f = f.split(',')
-f.sort()
+f = sorted(f.split(','))
 
 i = 0
 acc = 0
