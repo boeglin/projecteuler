@@ -91,10 +91,11 @@ def autofind(cand):
                             if val not in other:
                                 other.append(val)
                 # test
-                for mval in cand[y][x]:
-                    if mval not in other:
-                        cand[y][x] = [mval]
-                        return 1
+                if len(other) == 8:
+                    for mval in cand[y][x]:
+                        if mval not in other:
+                            cand[y][x] = [mval]
+                            return 1
                 # column
                 other = []
                 for j in xrange(9):
@@ -103,10 +104,11 @@ def autofind(cand):
                             if val not in other:
                                 other.append(val)
                 # test
-                for mval in cand[y][x]:
-                    if mval not in other:
-                        cand[y][x] = [mval]
-                        return 1
+                if len(other) == 8:
+                    for mval in cand[y][x]:
+                        if mval not in other:
+                            cand[y][x] = [mval]
+                            return 1
                 # square
                 other = []
                 for j in xrange(y / 3 * 3, y / 3 * 3 + 3):
@@ -116,10 +118,11 @@ def autofind(cand):
                                 if val not in other:
                                     other.append(val)
                 # test
-                for mval in cand[y][x]:
-                    if mval not in other:
-                        cand[y][x] = [mval]
-                        return 1
+                if len(other) == 8:
+                    for mval in cand[y][x]:
+                        if mval not in other:
+                            cand[y][x] = [mval]
+                            return 1
     return 0
 
 #### utilities
