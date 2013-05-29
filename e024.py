@@ -1,17 +1,20 @@
 #!/usr/bin/python
 
-import sys, math
+def perm(l):
+    if not l:
+        yield ""
 
-def perm(pre, l):
-    if len(l) == 1:
-        return [pre + str(l[0])]
-
-    ret = []
     for i in l:
         m = l[:]
         m.remove(i)
-        ret.extend( perm(pre + str(i), m) )
-    return ret
+        for j in perm(m):
+            yield str(i) + j
 
-print perm("", range(10))[999999]
+count = 0
+
+for i in perm(range(10)):
+    count += 1
+    if count == 1000000:
+        print i
+        break
 
