@@ -3,7 +3,6 @@
 import math
 
 back = {}
-
 def div(n):
     if n in back:
         return back[n]
