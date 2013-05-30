@@ -3,7 +3,7 @@
 N = 20
 found = {}
 
-def choose(r, d, pre=''):
+def choose(r, d, pre = ''):
     ret = 0
 
     if not (r or d):

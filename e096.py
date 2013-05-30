@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-#### those 2 functions brute force the grid 
+#### those 2 functions brute force the grid
 
 def is_valid(s):
     #lines

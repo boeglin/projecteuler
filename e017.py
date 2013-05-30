@@ -34,7 +34,7 @@ unit = {
 }
 
 def num(n):
-    
+
     if n >= 1000:
         ac = n / 1000
         dc = n % 1000

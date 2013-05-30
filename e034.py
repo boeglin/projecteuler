@@ -3,13 +3,9 @@
 import math
 
 def tolist(n):
-    pos = int(math.log10(n))
-
-    while pos >= 0:
-        div = 10 ** pos
-        yield math.factorial(n / div)
-        n = n % div
-        pos -= 1
+    while n:
+        yield math.factorial(n % 10)
+        n /= 10
 
 acc = 0
 for i in xrange(3, 50000):

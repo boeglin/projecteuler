@@ -1,53 +1,41 @@
 #!/usr/bin/python
 
-import math 
+import math
 
-
-dump = {}
-
-def fac(n):
-    if n in dump:
-        return dump[n]
-
-    s = sum((math.factorial(int(x)) for x in list(str(n))))
-    dump[n] = s
-    return s
+def tolist(n):
+    while n:
+        yield math.factorial(n % 10)
+        n /= 10
 
 chain = {}
+def fchain(n):
+    l = []
+    nxt = n
+    while nxt not in l and nxt not in chain:
+        l.append(nxt)
+        nxt = sum(tolist(nxt))
 
-k = -1
-ks = 0
+    if nxt in l: # out of cache chain ended in loop
+        idx = l.index(nxt)
+        c_len = len(l) - idx
+        for i in l[idx:]:
+            chain[i] = c_len
 
-def fchain(l, n):
-    global k, ks
-    if n in chain:
-        return chain[n]
-
-    if n in l:
-        k = n
-        ks = len(l) - l.index(n)
-        return ks
-
-    l.append(n)
-    nxt = fac(n)
-
-    s = fchain(l[:], nxt) + 1
-    if k in l:
-        chain[n] = ks
-        return ks
-    else:
-        k = -1
-
-    chain[n] = s
-    return s
-
-print fchain([], 169), fchain([], 69)
-print chain
+        if idx > 0:
+            for i in l[idx - 1::-1]:
+                c_len += 1
+                chain[i] = c_len
+    elif l: # cache hit after a while
+        c_len = chain[nxt]
+        for i in l[::-1]:
+            c_len += 1
+            chain[i] = c_len
+    return chain[n]
 
 acc = 0
 for i in xrange(1, 1000000):
-    l = fchain([], i)
-    if l >= 60:
+    l = fchain(i)
+    if l == 60:
         acc += 1
-        print l, acc, i
+print acc
 
